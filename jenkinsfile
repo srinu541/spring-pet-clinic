@@ -1,0 +1,13 @@
+node {
+
+   stage('SCM') {
+      // git clone
+	  git 'https://github.com/srinu541/spring-pet-clinic.git'
+   }
+   
+   stage ('build the packages') {
+      // mvn package
+	  sh 'mvn package'
+	  sh label: '', script: 'java -jar target/*.jar'
+   }
+   }
