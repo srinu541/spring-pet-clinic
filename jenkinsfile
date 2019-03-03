@@ -1,9 +1,4 @@
 pipeline {
-
-   stage('SCM') {
-      // git clone
-	  git 'https://github.com/srinu541/spring-pet-clinic.git'
-   }
    
    stage ('build the packages') {
       // mvn package
