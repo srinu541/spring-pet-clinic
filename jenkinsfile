@@ -1,10 +1,11 @@
 pipeline {
-   
+   agent any
    stage ('build the packages') {
-      // mvn package
-	  sh 'mvn package'
+		steps {
+	  sh 'mvn clean package'
 	  sh label: '', script: 'sudo docker image build -t sree . '
 	  sh label: '', script: 'sudo docker container run -it -d -p 9999:8080 sree:latest'
    }
   
    }
+}
