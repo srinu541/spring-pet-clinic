@@ -1,12 +1,14 @@
 pipeline {
    agent any
-   stage ('build the packages') {
+   stages {
+	stage('build') {
 		steps {
 		node('master') {
 			sh 'mvn clean package'
 			sh label: '', script: 'sudo docker image build -t sree . '
 			sh label: '', script: 'sudo docker container run -it -d -p 9999:8080 sree:latest'
-   }
-  }
-   }
+			}
+		}
+	  }
+    }
 }
