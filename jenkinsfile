@@ -3,6 +3,8 @@ pipeline {
    stage ('build the packages') {
       // mvn package
 	  sh 'mvn package'
-	  sh label: '', script: 'java -jar target/*.jar'
+	  sh label: '', script: 'sudo docker image build -t sree . '
+	  sh label: '', script: 'sudo docker container run -it -d -p 9999:8080 sree:latest'
    }
+  
    }
